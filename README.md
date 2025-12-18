@@ -1,33 +1,46 @@
 # CellDeathSpreading
 
-A **PyTorch** framework for **anomaly detection in cellular image-based profiling** to support hit identification in high-throughput screening (HTS). The core idea is to learn the distribution of “normal” (control) wells via **self-supervised reconstruction**, then use reconstruction-driven signals as **interpretable anomaly-based representations** for downstream analysis (e.g., reproducibility, MoA classification, and feature-level explanations).
+A computational framework for **quantifying collective ferroptosis dynamics from live-cell imaging**. Using **single-cell death times**, **morphological death fates** (necrotic vs apoptotic-like), and **cell positions**, the framework computes spatiotemporal statistics that distinguish **single-cell** from **propagative** ferroptosis:
 
-### Key Features
+- **Spatial Segregation Index (SSI):** quantifies whether different death fates cluster in space.
+- **Spatial Propagation Index (SPI):** quantifies whether neighboring cells of the same fate die **more synchronously** than expected by chance.
 
-- Self-supervised learning from control data (no anomaly labels required)
-- Captures complex morphological dependencies in high-content profiles
-- Interpretable anomaly signals (feature-level insight, not just scores)
-- Fast training and inference (HTS-friendly workflows)
-- PyTorch-based, configurable experiments via YAML
+These metrics enable systematic comparison across perturbations (e.g., **GPX4 inhibition** vs **glutathione depletion**) and help reveal mechanisms underlying **locally propagative, lysosome-linked death waves** in cell populations.
 
 ![Overview figure](figures/<ADD_FIGURE_NAME>.png)
 
+
 ---
 
-## Downloading data
+## Key Features
 
-The project uses **augmented per-well aggregated Cell Painting** datasets hosted on the **Cell Painting Gallery (CPG)** (AWS Open Data).
+- **Cell death quantification** of collective ferroptosis from time-lapse imaging
+- **Spatial segregation index** (necrotic vs apoptotic-like, showing mixed apoptotic features tendency to group together is evaluated)
+- **Voronoi-based neighborhood graph** with a biologically motivated distance cutoff
+- **Permutation testing (bootstrapping)** for statistical significance of SSi and SPI.
+- Reproducible scripts for **preprocessing → SSI/SPI computation → plotting and figure generation**
+- Designed to support **multiple biological replicates** and varying acquisition rates (e.g., 5-min and 10-min imaging)
 
-Example (dataset used in the paper):
+---
 
-```bash
-aws s3 cp --no-sign-request \
-  s3://cellpainting-gallery/cpg0003-rosetta/broad/workspace/ \
-  <YOUR_PATH> --recursive
-````
-
-> You’ll need the **AWS CLI** installed and available on your PATH.
-
+## Repository Structure
+```
+CellDeathSpreading/
+├── README.md
+├── environment.yml             # full requirments for installing the relavant enviroment to generate the results in the paper and apply it on other datab
+├── main.py
+├── LICENSE
+├── figures/                    # figures in paper that were the results of this analysis
+├── notebooks/                  # notebooks
+│   ├── paper_figures/                # generating the paper figure of SPI and SSI analysis
+│   ├── sensitivity_analysis/                  # performing sensitivity analysis of distance threshold and time sliding window 
+│   └── statistical_signifigance/               # permutation tests + p-values
+├── src/                        # main scripts of SSI and SPI quantifications
+├── data/   
+│   ├──  mixed_death_annotations  # csvs of manual annotation of death times and modes
+│   └── metadata.csv                # metadata of expreiments that were manually annotated in mixed_death_annotations   
+└── results/                    # csvs summery of running the analysis on data stored in /data    
+```
 ---
 
 ## Setup Instructions
@@ -36,12 +49,12 @@ aws s3 cp --no-sign-request \
 
 ```bash
 # 1) Clone and enter repo
-git clone https://github.com/zaritskylab/AnomalyDetectionScreening.git
-cd AnomalyDetectionScreening
+git clone https://github.com/zaritskylab/CellDeathSpreading.git
+cd CellDeathSpreading
 
 # 2) Create and activate environment
-conda create -n pytorch_anomaly python=3.10.9
-conda activate pytorch_anomaly
+conda conda env create -f environment.yml
+conda activate CellDS
 
 # 3) Install dependencies
 pip install -r requirements.txt
@@ -77,32 +90,6 @@ python main.py --flow train --exp_name <EXP_NAME> --config configs/<CONFIG>.yaml
 
 # Evaluate results (e.g., replication %, MoA classification, SHAP explanations)
 python main.py --flow eval --exp_name <EXP_NAME>
-```
-
----
-
-## Repository Structure
-
-```text
-AnomalyDetectionScreening/
-├── README.md
-├── main.py
-├── requirements.txt
-├── setup.py
-├── LICENSE
-├── configs/                 # YAML experiment configs
-├── notebooks/               # analysis & interpretation notebooks
-│   ├── analyze_moa_res.ipynb
-│   └── interpret_feature_dists.ipynb
-├── figures/                 # figures used in docs/paper
-├── sbatch/                  # HPC job scripts (if applicable)
-└── src/                     # main package
-    ├── __init__.py
-    ├── data/                # data utilities / loaders
-    ├── model/               # model components
-    ├── eval/                # evaluation pipeline
-    ├── utils/               # shared helpers
-    └── ProfilingAnomalyDetector.py
 ```
 
 ---
