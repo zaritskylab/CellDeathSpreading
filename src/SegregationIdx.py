@@ -22,7 +22,7 @@ from matplotlib.collections import EllipseCollection,CircleCollection,PatchColle
 import math
 import numpy as np
 
-sys.path.append("/home/esraan/CellDeathSpreading/src/")
+# sys.path.append("/home/esraan/CellDeathSpreading/src/")
 from src.quanta_utils import get_neighbors,get_real_distance
 
 class SegregationIdx:
@@ -150,7 +150,7 @@ class SegregationIdx:
         observed_seg_idx = original_seg_idx.copy()
         self.permuted_si = permuted_si_list.copy()
         p_value = {key: np.sum(np.array(permuted_si_list.get(key)) > observed_seg_idx.get(key)) for key in permuted_si_list.keys()}
-        self.res = {key: (observed_seg_idx.get(key), np.float(p_value.get(key,0.0000)/kwargs.get('num_permutations', 1000)), label_counts.get(key)) for key in observed_seg_idx.keys()}
+        self.res = {key: (observed_seg_idx.get(key), np.float32(p_value.get(key,0.0000)/kwargs.get('num_permutations', 1000)), label_counts.get(key)) for key in observed_seg_idx.keys()}
         # self.res = {key: (observed_seg_idx.get(key), round(p_value.get(key, 0) / kwargs.get('num_permutations', 1000), 3), label_counts.get(key)) for key in observed_seg_idx.keys()}
        
         return self.res
@@ -194,22 +194,3 @@ class SegregationIdx:
 
         return {key:np.mean(value) for key, value in cells_same_segregation_index.items()} if kwargs.get('stats_to_calculate', 'mean') == 'mean' else {key: np.median(value) for key, value in cells_same_segregation_index.items()}
   
-    # @staticmethod #TODO: fixed the issue with corner and edge cells- tesing is needed
-   
-
-if __name__ == "__main__":
-    # Example usage
-    # OLD DATA
-    exps_dir_name = "/sise/assafzar-group/assafzar/Esraa/Others/fully_annotated_data/TimeFrames/"
-    meta_data_file_full_path= "/sise/assafzar-group/assafzar/Esraa/Others/ManuallyAnnotatedRoisuu.csv"
-    meta_data_extract_exp_names= pd.read_csv(meta_data_file_full_path)
-    exp_names = meta_data_extract_exp_names.iloc[:,1]
-    print(exp_names[1])
-    exp_full_path = os.path.join(exps_dir_name, exp_names[0])
-    csv_file = pd.read_csv(exp_full_path)
-    dist_threshold = 100
-    cells_location = csv_file[["cell_x","cell_y"]].values
-    death_modes = csv_file[["Mode"]].values
-    # np.random.shuffle(death_modes)
-    segregation_index = SegregationIdx(cells_location, death_modes,1000, dist_threshold, filter_neighbors_by_distance=True, neighbors_level=1, stats_to_calculate= "mean")
-    print(segregation_index.get_segregation_index())

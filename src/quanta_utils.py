@@ -12,8 +12,9 @@ from typing import *
 from enum import Enum
 from scipy.spatial import Voronoi
 from shapely.geometry import Point, Polygon
-sys.path.append("/home/esraan/CellDeathSpreading/src/")
-from src.utils import get_experiment_cell_death_times_by_specific_siliding_window,read_experiment_cell_xy_and_death_times
+sys.path.append(os.sep.join(os.getcwd().split(os.sep)[:-1]))
+from src.utils import get_experiment_cell_death_times_by_specific_siliding_window,read_experiment_cell_xy_and_death_times,get_exp_treatment_type_and_temporal_resolution
+from src.uSpiCalc import uSpiCalc
 
 def get_real_distance(cell1_xy, cell2_xy):
     """
@@ -177,3 +178,180 @@ def get_cells_density_corrected(cell_locations, dist_threshold, image_dim):
     except ZeroDivisionError:
         print("ZeroDivisionError")
         return all_cells_local_density_measurment_normalized
+
+def calc_all_experiments_SPI_and_NI_for_landscape(
+        exp_name: Union[str, List[str]],
+        exps_dir_path: str,
+        meta_data_full_file_path: str,
+        **kwargs) -> np.array:
+    if isinstance(exp_name, list):
+        results = {}
+        for exp in exp_name:
+            res = calc_all_experiments_SPI_and_NI_for_landscape(
+                exp_name=exp,
+                exps_dir_path=exps_dir_path,
+                meta_data_full_file_path=meta_data_full_file_path,
+                **kwargs
+            )
+            results[exp] = res
+        return results
+    try:
+        # print(exp_name)
+        exp_full_path = os.path.join(exps_dir_path, exp_name)
+        dist_threshold = kwargs.get("dist_threshold", 100)
+        dist_in_pixel = kwargs.get("dist_in_pixel", False)
+        if dist_in_pixel:
+            temp_csv_exract = pd.read_csv(meta_data_full_file_path)
+            phys_size_x = temp_csv_exract[temp_csv_exract['File Name'] == exp_name]['PhysicalSizeX'].values[0]
+            dist_threshold = dist_threshold * phys_size_x
+        exp_treatment, exp_temporal_resolution = get_exp_treatment_type_and_temporal_resolution(exp_file_name=exp_name,
+                                                                                                meta_data_file_full_path=meta_data_full_file_path)
+
+        cells_locis, cells_tods = read_experiment_cell_xy_and_death_times(exp_full_path=exp_full_path)
+
+        # norm_spi_values = norm_spi(cells_locis=cells_locis,cells_tods=cells_tods,exp_temporal_resolution=exp_temporal_resolution,exp_treatment=exp_treatment)
+        spi, pvalue, dist_avg =\
+            calc_experiment_SPI(cells_tods=cells_tods,
+                                cells_location=cells_locis,
+                                exp_temporal_resolution=exp_temporal_resolution,
+                                exp_treatment=exp_treatment,
+                                **kwargs,
+                                
+                                # sliding_time_window_size = sliding_time_window_size,
+                                # time_unit=kwargs.get('time_unit', 'minutes'),
+                                        # filter_neighbors_by_distance=kwargs.get("filter_neighbors_by_distance", True),
+                                        # filter_neighbors_by_level=kwargs.get("filter_neighbors_by_level", 1),
+                                        )
+        return  spi, pvalue#, dist_avg# ,norm_spi_values[0],
+    except FileNotFoundError:
+        return (None,None,None)
+
+def calc_experiment_SPI(cells_location: list,
+                        cells_tods:list,
+                        exp_temporal_resolution:int,
+                        exp_treatment,
+                        **kwargs) -> tuple :
+    cells_tods = get_experiment_cell_death_times_by_specific_siliding_window(cells_times_of_death=cells_tods,sliding_window_size = kwargs.get('sliding_time_window_size',10))
+    spi_instance = uSpiCalc(XY=cells_location, die_times=cells_tods, temporal_resolution=exp_temporal_resolution, exp_treatment=exp_treatment, **kwargs)
+    return spi_instance.get_uspis(), spi_instance.assess_stat()[0], spi_instance.calc_avg_distance()
+
+def replace_ugly_long_name(name, cell_line = ""):
+    lower_case_name = name.lower()
+    if "fb" in lower_case_name and "peg" not in lower_case_name:
+        if cell_line=="":
+            return "FAC&BSO"
+        # elif "sgCx43" in cell_line:
+        #     return "MCF10A+FB"
+        elif "10A" in cell_line:
+            return "MCF10A+FB"
+        elif "HAP1-920H" in cell_line:
+            return "HAP1 920 clone H+FB"
+        elif "HAP1 920 clone H" in cell_line:
+            return "HAP1 920 clone H+FB"
+        elif "HAP1" in cell_line:
+            return "HAP1+FB"
+        elif "MCF7" in cell_line:
+            return "MCF7+FB"
+        elif "U937" in cell_line:
+            return "U937+FB"
+        
+        if "dense"  in lower_case_name or "sparse" in lower_case_name:
+            print("here")
+            return "MCF10A+FAC&BSO **"
+        
+        return cell_line+"+FB"
+    elif "fac" in lower_case_name and "peg" not in lower_case_name:
+        if cell_line=="":
+            return "FAC&BSO"
+        elif "sgCx43" in cell_line:
+            return "MCF10A+FB"
+        if "dense"  in lower_case_name or "sparse" in lower_case_name:
+            print("here")
+            return "MCF10A+FAC&BSO **"
+        # if "MCF10A sgCx43".lower() in cell_line.lower():
+        #     return "MCF10A+FB"
+        return cell_line+"+FB"
+    elif "peg" in lower_case_name:
+        if "peg1450" in lower_case_name:
+            peg_type = "PEG1450"
+        elif "peg3350" in lower_case_name:
+            peg_type = "PEG3350"
+        else:
+            peg_type = "GCAMP"
+        # peg_type = "PEG1450" if "peg1450" or "PEG1450" in lower_case_name else "PEG3350"
+        if cell_line=="":
+            return "FAC&BSO+"+peg_type
+        elif "HAP1-920H" in cell_line:
+            return "HAP1+FAC&BSO+"+peg_type
+        elif "HAP1" in cell_line:
+            return "HAP1+FAC&BSO+"+peg_type
+        return cell_line +"FAC&BSO+"+peg_type
+    elif "tsz" in lower_case_name:
+        if cell_line=="":
+            return "TSZ" #"U937+TSZ"
+        elif "U937" in cell_line:
+            return "U937+TSZ"
+        return cell_line + "+TSZ"
+    elif "ml162" in lower_case_name:
+        if cell_line=="":
+            return "ML162"
+        elif "HAP1" in cell_line:
+            return "HAP1+ML162" 
+        elif "MCF10A" in cell_line:
+            return "MCF10A+ML162"
+        elif "MCF7" in cell_line:
+            return "MCF7+ML162"
+        return cell_line +"+ML162"
+    elif "erastin" in lower_case_name:
+        if cell_line=="":
+            return "Erastin"
+        elif "HAP1" in cell_line:
+            return "HAP1+erastin"
+        return cell_line +"Erastin"
+    
+    elif "skt" in lower_case_name:
+        if cell_line=="":
+            return "TRAIL"
+        elif "MCF10A" in cell_line:
+            return "MCF10A+TRAIL" #"MCF10A+superkiller TRAIL"
+        return cell_line+"TRAIL"
+    elif "trail" in lower_case_name:
+        if cell_line=="":
+            return "TRAIL"
+        elif "MCF10A" in cell_line:
+            return "MCF10A+TRAIL" #"MCF10A+superkiller TRAIL"
+        return cell_line+"TRAIL"
+    elif "amsh" in lower_case_name:
+        if cell_line=="":
+            return "C' dots"
+        elif "b16f10" in cell_line:
+            return "B16F10+C' dots"
+        elif "B16F10" in cell_line:
+            return "B16F10+C' dots"
+        return cell_line+ "+C' dots"
+    elif "h2o2" in lower_case_name:
+        if cell_line=="":
+            return "H2O2"
+        elif "MCF7" in cell_line:
+            return "MCF7+H2O2"
+        return cell_line + "+H2O2"
+    elif "sparse" in lower_case_name or "dense" in lower_case_name:
+        return "MCF10A+FAC&BSO **"
+    else:
+        if cell_line=="":
+            return lower_case_name
+        return cell_line+"+"+lower_case_name
+    
+def simple_treatment(name):
+    # if "field" in name.lower():
+    #     return "FB"
+    if "nec" in name.lower():
+        return "Necrosis"
+    elif "apop" in name.lower():
+        return "Apoptosis"
+    else:
+        if "_A" in name:
+            return "MixedSubApop"
+        elif "_N" in name:
+            return "MixedSubNec"
+        return "MixedColony"

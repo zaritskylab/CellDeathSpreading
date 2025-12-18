@@ -7,8 +7,7 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
-sys.path.append("/Users/esraan/CodeBase/CellDeathSpreading/")
-from utils import read_experiment_cell_xy_and_death_times
+sys.path.append(os.sep.join(os.getcwd().split(os.sep)[:-1]))
 from src.SpiCalc import SpiCalc
 
 class uSpiCalc(SpiCalc):
@@ -77,35 +76,3 @@ class uSpiCalc(SpiCalc):
         return np.mean(np.array(distance_diff_from_nighbors_list))
 
 
-if __name__ == '__main__':
-    single_exp_full_path = '/sise/assafzar-group/assafzar/Esraa/CellDeathQuantification/Data/Experiments_XYT_CSV/OriginalTimeMinutesData/20160820_10A_FB_xy11.csv'
-    cells_loci, cells_times_of_death = read_experiment_cell_xy_and_death_times(exp_full_path=single_exp_full_path)
-    ob = uSpiCalc(XY=cells_loci,
-                        die_times=cells_times_of_death,
-                        treatment='FB',
-                        temporal_resolution=30,
-                        n_scramble=1000,
-                        draw=False,
-                        dist_threshold=200, 
-                        filter_neighbors_by_distance=True,
-                        filter_neighbors_by_level= 3,
-                        time_unit='minutes',)
-    print(ob.get_uspis())
-    print(ob.get_stat_score())
-    experiments_dir = '/sise/assafzar-group/assafzar/Esraa/CellDeathQuantification/Data/Experiments_XYT_CSV/OriginalTimeMinutesData/'
-    experiment_files = glob.glob(os.path.join(experiments_dir, '*.csv'))
-    for single_exp_full_path in experiment_files:
-        print(f"Processing file: {single_exp_full_path}")
-        cells_loci, cells_times_of_death = read_experiment_cell_xy_and_death_times(exp_full_path=single_exp_full_path)
-        ob = uSpiCalc(XY=cells_loci,
-                      die_times=cells_times_of_death,
-                      treatment='',
-                      temporal_resolution=10,
-                      n_scramble=1000,
-                      draw=False,
-                      dist_threshold=200, 
-                      filter_neighbors_by_distance=True,
-                      filter_neighbors_by_level=3,
-                      time_unit='minutes',)
-        print(f"Propagation Index (uSpi): {ob.get_uspis()}")
-        print(f"Statistic Score: {ob.get_stat_score()}")

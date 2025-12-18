@@ -6,6 +6,7 @@ import random
 from typing import *
 import numpy as np
 import pandas as pd
+import sys
 from scipy.spatial import Voronoi
 from scipy.stats import linregress, zscore, pearsonr
 from scipy.signal import correlate
@@ -15,9 +16,7 @@ from sklearn.metrics import silhouette_score as sil_score
 from sklearn.metrics import calinski_harabasz_score as cali_h_score
 from sklearn.metrics import davies_bouldin_score as davies_b_score
 from sklearn.metrics.pairwise import euclidean_distances as euc_dis
-from global_parameters import *
 from matplotlib.lines import Line2D
-import zipfile
 
 
 def get_custom_legend_artists(labels_to_colors: dict, labels_to_markers: dict):
@@ -813,63 +812,3 @@ def fix_missing_experiment_number(path_of_zip_file: str):
     except Exception as e:
         shutil.rmtree(temp_dir)
         print(f"something wen't wrong in file: {path_of_zip_file}.\nORIGINAL ERROR:\n{e}")
-
-if __name__ == '__main__':
-    fix_missing_experiment_number(
-        'G:\\My Drive\\Thesis\\Experiments\\2021-2022 Density Experiments\\TEMP\\mike-density-200k-16.zip')
-
-    fix_missing_experiment_number(
-        'G:\\My Drive\\Thesis\\Experiments\\2021-2022 Density Experiments\\TEMP\\mike-density-200k-17.zip')
-
-    fix_missing_experiment_number(
-        'G:\\My Drive\\Thesis\\Experiments\\2021-2022 Density Experiments\\TEMP\\mike-density-200k-18.zip')
-
-    fix_missing_experiment_number(
-        'G:\\My Drive\\Thesis\\Experiments\\2021-2022 Density Experiments\\TEMP\\mike-density-200k-19.zip')
-
-    fix_missing_experiment_number(
-        'G:\\My Drive\\Thesis\\Experiments\\2021-2022 Density Experiments\\TEMP\\mike-density-200k-20.zip')
-
-    # fix_bulk_zip_files_with_bad_formatting(main_dir_to_zip_files="C:\\Users\\User\\Downloads\\NewDensityExperiments\\Original",
-    #                                        dir_to_save_fixed_files="C:\\Users\\User\\Downloads\\NewDensityExperiments\\Fixed")
-    # fix_tiff_stack_naming_format('C:\\Users\\User\\Downloads\\Mike-Density-25K-2\\Mike_Density_25K_2', '_')
-
-    # add new markers and colors for plots
-    # json_dir_path = 'C:\\Users\\User\\PycharmProjects\\CellDeathQuantification\\config_files'
-    #  # = {}
-    # for file_name, treatment_name_and_val_to_add in zip(['treatment_to_color_dict_path.txt',
-    #                                                      'treatment_to_marker_dict_path.txt'],
-    #                                                     [{'autonomous': [1, 0, 1, 1],
-    #                                                       'non_autonomous':[0, 1, 0, 1]},
-    #                                                      {'autonomous': 'X',
-    #                                                      'non_autonomous': 's'}]):
-    #     json_path = os.sep.join([json_dir_path, file_name])
-    #     add_values_to_json(path=json_path, kwargs_to_add=treatment_name_and_val_to_add)
-
-    # create a json which defines treatments as autonomous or non-autonomous
-    # path = 'C:\\Users\\User\\PycharmProjects\\CellDeathQuantification\\config_files\\treatment_to_autonomously.txt'
-    # treatment_to_autonomously_dict = {
-    #     'DMEM/F12-AA+400uM FAC&BSO': 'non_autonomous',
-    #     'MCF10A sgCx43-2A,DMEM/F12-AA+400uM FAC&BSO': 'non_autonomous',
-    #     "RPMI-AA+15uM aMSH C' dots": 'non_autonomous',
-    #     'DMEM-AA+400uM FAC&BSO': 'non_autonomous',
-    #     'RPMI+400uM FAC&BSO': 'non_autonomous',
-    #     'DMEM-AA+5uM ML162': 'autonomous',
-    #     'DMEM + 1mM H2O2': 'autonomous',
-    #     'MCF10A,DMEM/F12-AA+35uM ML162': 'autonomous',
-    #     'DMEM + 400uM FAC&BSO': 'non_autonomous',
-    #     'DMEM+7.5uM erastin': 'non_autonomous',
-    #     'RPMI+20ng/mL TNFa+1uM SMAC + 20uM zVAD': 'autonomous',
-    #     'DMEM/F12+50ng/mL superkiller TRAIL': 'autonomous',
-    #     'DMEM + 400uM FAC&BSO + 20mM PEG1450': 'non_autonomous',
-    #     'DMEM + 400uM FAC&BSO + 20mM PEG3350': 'non_autonomous',
-    #     '"DMEM + 4uM ML162 (plastic, no oil)"': 'autonomous',
-    #     'ferroptosis_simulation': 'non_autonomous',
-    #     'apoptosis_simulation': 'autonomous',
-    #     'ferroptosis_attempt_no_healing_factor': 'non_autonomous',
-    #     'apoptosis_attempt_no_healing_factor': 'autonomous',
-    #     'ferroptosis_attempt_HIGH_healing_factor': 'non_autonomous',
-    # }
-    # write_dict_as_json(path=path, dict_to_write=treatment_to_autonomously_dict)
-
-

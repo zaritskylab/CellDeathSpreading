@@ -8,7 +8,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
 from sklearn.preprocessing import LabelEncoder
-sys.path.append("/home/esraan/CellDeathSpreading/src/")
+# sys.path.append("/home/esraan/CellDeathSpreading/src/")
 from src.utils import read_experiment_cell_xy_and_death_times
 from src.SpiCalc import SpiCalc
 
@@ -69,39 +69,3 @@ class mixSpiCalc(SpiCalc):
     def calc_stat(self, dist_for_calc):
         return np.mean(dist_for_calc)
 
-    
-
-    
-# if __name__ == '__main__':
-#     single_exp_full_path = '/sise/assafzar-group/assafzar/Esraa/CellDeathQuantification/Data/Experiments_XYT_CSV/OriginalTimeMinutesData/20160820_10A_FB_xy11.csv'
-#     cells_loci, cells_times_of_death = read_experiment_cell_xy_and_death_times(exp_full_path=single_exp_full_path)
-#     ob = mixSpiCalc(XY=cells_loci,
-#                         die_times=cells_times_of_death,
-#                         treatment='FB',
-#                         temporal_resolution=30,
-#                         n_scramble=1000,
-#                         draw=False,
-#                         dist_threshold=200, 
-#                         filter_neighbors_by_distance=True,
-#                         filter_neighbors_by_level= 3,
-#                         time_unit='minutes',)
-#     print(ob.get_uspis())
-#     print(ob.get_stat_score())
-#     experiments_dir = '/sise/assafzar-group/assafzar/Esraa/CellDeathQuantification/Data/Experiments_XYT_CSV/OriginalTimeMinutesData/'
-#     experiment_files = glob.glob(os.path.join(experiments_dir, '*.csv'))
-
-#     for single_exp_full_path in experiment_files:
-#         print(f"Processing file: {single_exp_full_path}")
-#         cells_loci, cells_times_of_death = read_experiment_cell_xy_and_death_times(exp_full_path=single_exp_full_path)
-#         ob = mixSpiCalc(XY=cells_loci,
-#                       die_times=cells_times_of_death,
-#                       treatment='',
-#                       temporal_resolution=10,
-#                       n_scramble=1000,
-#                       draw=False,
-#                       dist_threshold=200, 
-#                       filter_neighbors_by_distance=True,
-#                       filter_neighbors_by_level=3,
-#                       time_unit='minutes',)
-#         print(f"Propagation Index (uSpi): {ob.get_uspis()}")
-#         print(f"Statistic Score: {ob.get_stat_score()}")
