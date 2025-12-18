@@ -7,7 +7,7 @@ A computational framework for **quantifying collective ferroptosis dynamics from
 
 These metrics enable systematic comparison across perturbations (e.g., **GPX4 inhibition** vs **glutathione depletion**) and help reveal mechanisms underlying **locally propagative, lysosome-linked death waves** in cell populations.
 
-![Overview figure](figures/<ADD_FIGURE_NAME>.png)
+![Overview figure](figures/<SPIvsSSI>.png)
 
 
 ---
