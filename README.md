@@ -129,6 +129,10 @@ If you use this code in academic work, please cite the associated paper.
 
 This repository (including data, documentation, and figures where applicable) is intended for academic/research use and is released under **CC BY-NC 4.0**. See [LICENSE](LICENSE) for details.
 
+---
+
+## Resources
+This repo was carried out with the major help of this repo: [https://github.com/Yishaiaz/CellDeathQuantification]
 
 ---
 
