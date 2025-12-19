@@ -14,10 +14,10 @@ These metrics enable systematic comparison across perturbations (e.g., **GPX4 in
 
 ## Key Features
 
-- **Cell death quantification** of collective ferroptosis from time-lapse imaging
-- **Spatial segregation index** (necrotic vs apoptotic-like, showing mixed apoptotic features tendency to group together is evaluated)
-- **Voronoi-based neighborhood graph** with a biologically motivated distance cutoff
-- **Permutation testing (bootstrapping)** for statistical significance of SSi and SPI.
+- **Cell death quantification** of collective ferroptosis from time-lapse imaging.
+- **Spatial segregation index** evaluating tendency of same death group to cluster.
+- **Voronoi-based neighboring cells detection** with a biologically motivated distance cutoff of 100 microns.
+- **Permutation testing (bootstrapping)** for statistical significance of SSI and SPI.
 - Reproducible scripts for **preprocessing → SSI/SPI computation → plotting and figure generation**
 - Designed to support **multiple biological replicates** and varying acquisition rates (e.g., 5-min and 10-min imaging)
 
@@ -96,7 +96,8 @@ python main.py \
 ```
 ## To run main on new data:
 The data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
-metadata should be provided with the same template in /data dir as can be extracted from the raw time-lapse.
+
+Metadata csv should be provided with the same template in /data dir based on metadata extracted from the raw time-lapse.
 ## Regentation of paper figures:
 regenration of paper figures can be performed in paper_figures.ipynb
 ---
