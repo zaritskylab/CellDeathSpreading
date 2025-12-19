@@ -100,6 +100,7 @@ The data should be csvs of time of death, mode of death and the location of cell
 Metadata csv should be provided with the same template in /data dir based on metadata extracted from the raw time-lapse.
 ## Regentation of paper figures:
 regenration of paper figures can be performed in paper_figures.ipynb
+
 ---
 
 ## Citation
