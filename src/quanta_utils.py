@@ -179,7 +179,7 @@ def get_cells_density_corrected(cell_locations, dist_threshold, image_dim):
         print("ZeroDivisionError")
         return all_cells_local_density_measurment_normalized
 
-def calc_all_experiments_SPI_and_NI_for_landscape(
+def calc_all_experiments_SPI_for_figure(
         exp_name: Union[str, List[str]],
         exps_dir_path: str,
         meta_data_full_file_path: str,
@@ -187,7 +187,7 @@ def calc_all_experiments_SPI_and_NI_for_landscape(
     if isinstance(exp_name, list):
         results = {}
         for exp in exp_name:
-            res = calc_all_experiments_SPI_and_NI_for_landscape(
+            res = calc_all_experiments_SPI_for_figure(
                 exp_name=exp,
                 exps_dir_path=exps_dir_path,
                 meta_data_full_file_path=meta_data_full_file_path,
@@ -355,3 +355,60 @@ def simple_treatment(name):
         elif "_N" in name:
             return "MixedSubNec"
         return "MixedColony"
+    
+def calc_all_experiments_SSI_for_figure(
+        exp_name: Union[str, List[str]],
+        exps_dir_path: str,
+        meta_data_full_file_path: str,
+        **kwargs) -> np.array:
+    if isinstance(exp_name, list):
+        results = {}
+        for exp in exp_name:
+            res = calc_all_experiments_SSI_for_figure(
+                exp_name=exp,
+                exps_dir_path=exps_dir_path,
+                meta_data_full_file_path=meta_data_full_file_path,
+                **kwargs
+            )
+            results[exp] = res
+        return results
+    try:
+        # print(exp_name)
+        exp_full_path = os.path.join(exps_dir_path, exp_name)
+        dist_threshold = kwargs.get("dist_threshold", 100)
+        dist_in_pixel = kwargs.get("dist_in_pixel", False)
+        if dist_in_pixel:
+            temp_csv_exract = pd.read_csv(meta_data_full_file_path)
+            phys_size_x = temp_csv_exract[temp_csv_exract['File Name'] == exp_name]['PhysicalSizeX'].values[0]
+            dist_threshold = dist_threshold * phys_size_x
+        exp_treatment, exp_temporal_resolution = get_exp_treatment_type_and_temporal_resolution(exp_file_name=exp_name,
+                                                                                                meta_data_file_full_path=meta_data_full_file_path)
+
+        cells_locis, cells_tods = read_experiment_cell_xy_and_death_times(exp_full_path=exp_full_path)
+
+        # norm_spi_values = norm_spi(cells_locis=cells_locis,cells_tods=cells_tods,exp_temporal_resolution=exp_temporal_resolution,exp_treatment=exp_treatment)
+        spi, pvalue, dist_avg =\
+            calc_experiment_SPI(cells_tods=cells_tods,
+                                cells_location=cells_locis,
+                                exp_temporal_resolution=exp_temporal_resolution,
+                                exp_treatment=exp_treatment,
+                                **kwargs,
+                                
+                                # sliding_time_window_size = sliding_time_window_size,
+                                # time_unit=kwargs.get('time_unit', 'minutes'),
+                                        # filter_neighbors_by_distance=kwargs.get("filter_neighbors_by_distance", True),
+                                        # filter_neighbors_by_level=kwargs.get("filter_neighbors_by_level", 1),
+                                        )
+        return  spi, pvalue#, dist_avg# ,norm_spi_values[0],
+    except FileNotFoundError:
+        return (None,None,None)
+
+def calc_experiment_SSI(cells_location: list,
+                        cells_tods:list,
+                        exp_temporal_resolution:int,
+                        exp_treatment,
+                        **kwargs) -> tuple :
+    cells_tods = get_experiment_cell_death_times_by_specific_siliding_window(cells_times_of_death=cells_tods,sliding_window_size = kwargs.get('sliding_time_window_size',10))
+    spi_instance = uSpiCalc(XY=cells_location, die_times=cells_tods, temporal_resolution=exp_temporal_resolution, exp_treatment=exp_treatment, **kwargs)
+    return spi_instance.get_uspis(), spi_instance.assess_stat()[0], spi_instance.calc_avg_distance()
+

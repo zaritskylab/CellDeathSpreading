@@ -34,7 +34,7 @@ CellDeathSpreading/
 ├── notebooks/                  # notebooks
 │   ├── paper_figures/                # generating the paper figure of SPI and SSI analysis
 │   ├── sensitivity_analysis/                  # performing sensitivity analysis of distance threshold and time sliding window 
-│   └── statistical_signifigance/               # permutation tests + p-values
+│   └── statistical_signifigance/               # reproming permutation tests + p-values
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
 │   ├──  mixed_death_annotations  # csvs of manual annotation of death times and modes
@@ -53,45 +53,43 @@ git clone https://github.com/zaritskylab/CellDeathSpreading.git
 cd CellDeathSpreading
 
 # 2) Create and activate environment
-conda conda env create -f environment.yml
+conda env create -f environment.yml
 conda activate CellDS
-
-# 3) Install dependencies
-pip install -r requirements.txt
-
-# 4) Install package in editable mode
-pip install -e .
 ```
 
 ### Configuration
 
-Experiments are configured via YAML files in `configs/`.
-
-* Start from `configs/default_config.yaml` to see all supported parameters
-* Create your own config: `configs/<YOUR_CONFIG>.yaml` (override only what you need)
-* Set the required `base_dir=<YOUR_PATH>` to point to your data location
-
-Common paths:
-
-* `output_dir` (default: `base_dir/anomaly_output/`) — saved representations/outputs
-* `res_dir` (default: `base_dir/results/`) — evaluation results
-
-Precedence (highest → lowest):
-
-1. CLI args
-2. Custom config YAML
-3. Default config YAML
-
-### Run
-
-```bash
-# Train anomaly detection model
-python main.py --flow train --exp_name <EXP_NAME> --config configs/<CONFIG>.yaml
-
-# Evaluate results (e.g., replication %, MoA classification, SHAP explanations)
-python main.py --flow eval --exp_name <EXP_NAME>
+Experiments are configured via command‑line arguments
+Run Example
 ```
+# Run SPI only, using mixed experiments
+python main.py \
+  --run_analysis spi \
+  --data_dir /path/to/data \
+  --results_dir /path/to/results \
+  --files_to_analyze mixed \
+  --sliding_window_size 5 10 \
+  --distance_threshold 50 100 \
+  --n_permutations 1000
 
+# Run SSI only over mixed co-culture experiments
+python main.py \
+  --run_analysis ssi \
+  --data_dir /path/to/data \
+  --results_dir /path/to/results \
+  --files_to_analyze mixed \
+  --distance_threshold 100
+
+# Run both SPI and SSI and save to custom CSV names
+python main.py \
+  --run_analysis all \
+  --spi_csv_file AllExperimentsSPIs_updated.csv \
+  --ssi_csv_file SSI_sensitivity.csv
+```
+## to run script on new data:
+the data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
+metadata should be provided with the same template in /data as can be extracted from the raw time-lapse
+## Regentation of paper figures can be performed in paper_figures.ipynb.
 ---
 
 ## Citation
@@ -101,25 +99,15 @@ If you use this code in academic work, please cite the associated paper.
 **Journal version (recommended):**
 
 ```bibtex
-@article{shpigler2025anomaly,
-  title   = {Anomaly detection for high-content image-based phenotypic cell profiling},
-  author  = {Shpigler, Alon and Kolet, Naor and Golan, Shahar and Weisbart, Erin and Zaritsky, Assaf},
-  journal = {Cell Systems},
+@article{das_inpress_ferroptosis,
+  title   = {Ferroptosis induces heterogeneous death profiles that are controlled by lysosome rupture},
+  author  = {Das, Jyotirekha and Hombalkar, Saloni K. and Klein, Alison D. and Nsasra, Esraa and Vasandani, Muskaan and Petruzzi, Kay and Lu, Dajun and Ruiz, Stephen and Kliper-Gross, Orit and Hu, Jiachen and Riegman, Michelle and Jiang, Xuejun and Heller, Daniel A. and Zaritsky, Assaf and Bradbury, Michelle S. and Overholtzer, Michael},
+  journal = {Developmental Cell},
   year    = {2025},
-  doi     = {10.1016/j.cels.2025.101429}
+  note    = {In press},
+  doi     = {TBD}
 }
-```
 
-**Preprint:**
-
-```bibtex
-@article{shpigler2024anomaly,
-  title   = {Anomaly detection for high-content image-based phenotypic cell profiling},
-  author  = {Shpigler, Alon and Kolet, Naor and Golan, Shahar and Weisbart, Erin and Zaritsky, Assaf},
-  journal = {bioRxiv},
-  year    = {2024},
-  doi     = {10.1101/2024.06.01.595856}
-}
 ```
 
 ---
@@ -132,10 +120,4 @@ This repository (including data, documentation, and figures where applicable) is
 
 ## About
 
-**AnomalyDetectionScreening** is a framework for hit identification in **High Throughput Screening (HTS)** using anomaly-based representations for image-based cellular profiling.
-
-```
-
-Sources used for accuracy (repo description/commands/structure + paper metadata): :contentReference[oaicite:0]{index=0}
-::contentReference[oaicite:1]{index=1}
-```
+**CellDeathSpreading** provides **spatiotemporal metrics** to detect locally propagative ferroptosis and relate **collective death dynamics** to mechanisms such as lysosome rupture.
