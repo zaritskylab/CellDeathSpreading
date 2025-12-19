@@ -7,6 +7,8 @@ A computational framework for **quantifying collective ferroptosis dynamics from
 
 These metrics enable systematic comparison across perturbations (e.g., **GPX4 inhibition** vs **glutathione depletion**) and help reveal mechanisms underlying **locally propagative, lysosome-linked death waves** in cell populations.
 
+To examine the full paper, please visit [URL]
+
 ![Overview figure](figures/overview.png)
 
 
@@ -127,11 +129,6 @@ If you use this code in academic work, please cite the associated paper.
 
 This repository (including data, documentation, and figures where applicable) is intended for academic/research use and is released under **CC BY-NC 4.0**. See [LICENSE](LICENSE) for details.
 
----
-
-## About
-
-**CellDeathSpreading** provides **spatiotemporal metrics** to detect locally propagative ferroptosis and relate **collective death dynamics** to mechanisms such as lysosome rupture.
 
 ---
 
