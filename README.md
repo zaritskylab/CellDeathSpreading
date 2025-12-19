@@ -99,9 +99,9 @@ python main.py \
 ## To run main on new data:
 The data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
 
-Metadata csv should be provided with the same template in /data dir based on metadata extracted from the raw time-lapse.
-## Regentation of paper figures:
-Regenration of paper figures can be performed in notebooks/paper_figures.ipynb
+Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse.
+## Regeneration of paper figures:
+To regenerate all main figures in paper, please visit .notebooks/paper_figures.ipynb
 
 ---
 
