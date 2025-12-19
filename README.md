@@ -34,11 +34,13 @@ CellDeathSpreading/
 ├── notebooks/                  # notebooks
 │   ├── paper_figures/                # generating the paper figure of SPI and SSI analysis
 │   ├── sensitivity_analysis/                  # performing sensitivity analysis of distance threshold and time sliding window 
-│   └── statistical_signifigance/               # reproming permutation tests + p-values
+│   └── statistical_signifigance/  
+│             # reproming permutation tests + p-values
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
 │   ├──  mixed_death_annotations  # csvs of manual annotation of death times and modes
-│   └── metadata.csv                # metadata of expreiments that were manually annotated in mixed_death_annotations   
+│   └── metadata.csv                # metadata of expreiments that were manually annotated in mixed_death_annotations  
+│ 
 └── results/                    # csvs summery of running the analysis on data stored in /data    
 ```
 ---
@@ -60,7 +62,9 @@ conda activate CellDS
 ### Configuration
 
 Experiments are configured via command‑line arguments
-Run Example
+
+
+Run Example 1
 ```
 # Run SPI only, using mixed experiments
 python main.py \
@@ -71,7 +75,9 @@ python main.py \
   --sliding_window_size 5 10 \
   --distance_threshold 50 100 \
   --n_permutations 1000
-
+```
+Run Example 2
+```
 # Run SSI only over mixed co-culture experiments
 python main.py \
   --run_analysis ssi \
@@ -79,17 +85,20 @@ python main.py \
   --results_dir /path/to/results \
   --files_to_analyze mixed \
   --distance_threshold 100
-
+```
+Run Example 3
+```
 # Run both SPI and SSI and save to custom CSV names
 python main.py \
   --run_analysis all \
   --spi_csv_file AllExperimentsSPIs_updated.csv \
   --ssi_csv_file SSI_sensitivity.csv
 ```
-## to run script on new data:
-the data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
-metadata should be provided with the same template in /data as can be extracted from the raw time-lapse
-## Regentation of paper figures can be performed in paper_figures.ipynb.
+## To run main on new data:
+The data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
+metadata should be provided with the same template in /data dir as can be extracted from the raw time-lapse.
+## Regentation of paper figures:
+regenration of paper figures can be performed in paper_figures.ipynb
 ---
 
 ## Citation
@@ -114,10 +123,16 @@ If you use this code in academic work, please cite the associated paper.
 
 ## License
 
-This repository (including data, documentation, and figures where applicable) is intended for academic/research use and is released under **CC BY-NC 4.0**. See `LICENSE` for details.
+This repository (including data, documentation, and figures where applicable) is intended for academic/research use and is released under **CC BY-NC 4.0**. See [LICENSE](LICENSE) for details.
 
 ---
 
 ## About
 
 **CellDeathSpreading** provides **spatiotemporal metrics** to detect locally propagative ferroptosis and relate **collective death dynamics** to mechanisms such as lysosome rupture.
+
+---
+
+## Contact
+
+Please contact esraan@post.bgu.ac.il or assafzar@gmail.com for comments or questions regarding this repo.
