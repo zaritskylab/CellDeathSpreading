@@ -46,7 +46,7 @@ To examine the full paper, please visit [URL]
 ```
 CellDeathSpreading/
 ├── README.md
-├── environment.yml             # full requirments for installing the relevant enviroment to generate the results in the paper and apply it on other datab
+├── environment.yml             # full requirments for installing the relevant enviroment 
 ├── main.py
 ├── LICENSE
 ├── figures/                    # Publication-quality figures
@@ -57,9 +57,9 @@ CellDeathSpreading/
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
 │   ├── death_annotations  # folder of csvs: manual annotation of death times and modes
-│   └── metadata.csv                # metadata of expreiments that were manually annotated in death_annotations  
+│   └── metadata.csv                # metadata of manually annotated csvs in death_annotations/  
 │ 
-└── results/                    # csvs summery of running the analysis on data stored in /data    
+└── results/                    # SSI and SPI analysis results will stored in here    
 ```
 ---
 
