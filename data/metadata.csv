@@ -1,13 +1,13 @@
-﻿,File Name,Treatment,Cell Line,DeathMode,Pureness,SizeX,SizeY,SizeZ,SizeC,SizeT,SizeS,SizeB,SizeM,PhysicalSizeX,PhysicalSizeY,Sizes BF,DimOrder BF,DimOrder BF Array,ObjNA,AcquisitionDate,Name,DimOrder,DataSubTitle,CellsDispersion,Density(#Cells),Time Interval (min),Mode,Origin
-0,field13_crop-001_ROI#1_annotation_apop.csv,Ml162+ starvation,MCF10A,mixed,pure,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,field13_crop-001,ZTCYX,E,colony,237,5,Apoptosis,field13_colony
-1,field13_crop-001_ROI#1_annotation_nec.csv,Ml162+ starvation,MCF10A,mixed,pure,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,field13_crop-001,ZTCYX,E,colony,309,5,Necrosis,field13_colony
-2,Field14-002_ROI#1_annotation_apop.csv,Ml162+ starvation,MCF10A,mixed,pure,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,Field14-002,ZTCYX,E,colony,387,5,Apoptosis,field14_colony
-3,Field14-002_ROI#1_annotation_nec.csv,Ml162+ starvation,MCF10A,mixed,pure,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,Field14-002,ZTCYX,E,colony,249,5,Necrosis,field14_colony
-6,7-20-23_10arednuclei_ROI#10_annotation_apop.csv,Ml162+ starvation,MCF10A,mixed,pure,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 10),ZTCYX,D,colony,47,10,Apoptosis,field11_colony
-7,7-20-23_10arednuclei_ROI#10_annotation_nec.csv,Ml162+ starvation,MCF10A,mixed,pure,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 10),ZTCYX,D,colony,142,10,Necrosis,field11_colony
-8,7-20-23_10arednuclei_ROI#13_or14_both_colonies_annotation_apop.csv,Ml162+ starvation,MCF10A,mixed,pure,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 13),ZTCYX,D,colony,248,10,Apoptosis,field14_two_colony
-9,7-20-23_10arednuclei_ROI#13_or14_both_colonies_annotation_nec.csv,Ml162+ starvation,MCF10A,mixed,pure,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 13),ZTCYX,D,colony,348,10,Necrosis,field14_two_colony
-10,field13_crop-001_ROI#1_annotation_mixed.csv,Ml162+ starvation,MCF10A,mixed,mixed,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,field13_crop-001,ZTCYX,E,colony,546,5,mixed,field13_colony
-11,Field14-002_ROI#1_annotation_mixed.csv,Ml162+ starvation,MCF10A,mixed,mixed,2576,1924,1,1,577,1,1,1,0.642820647,0.642820647,"[1, 577, 1, 1, 1924, 2576]",XYCTZ,ZTCYX,0.3,2025-01-11T01:31:28.025017+02:00,Field14-002,ZTCYX,E,colony,641,5,mixed,field14_colony
-12,7-20-23_10arednuclei_ROI#10_annotation_mixed.csv,Ml162+ starvation,MCF10A,mixed,mixed,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 10),ZTCYX,D,colony,200,10,mixed,field3_colony
-13,7-20-23_10arednuclei_ROI#13_or14_both_colonies_annotation_mixed.csv,Ml162+ starvation,MCF10A,mixed,mixed,1288,962,1,1,141,1,1,1,1.289942529,1.289942529,"[1, 141, 1, 1, 962, 1288]",XYCTZ,ZTCYX,0.3,2023-07-21T00:13:23.217007+03:00,7-20-23_10arednuclei_ml162_torin_lip_qvad_colony (Series 13),ZTCYX,D,colony,596,10,mixed,field14_two_colony
+﻿,File Name,Treatment,Cell Line,SizeX,SizeY,PhysicalResolution (um/px),Density(#Cells),Time Interval (min),Region,Origin
+0,sample_2_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,237,5,Apoptotic,field13_colony
+1,sample_2_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,309,5,Necrotic,field13_colony
+2,sample_4_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,387,5,Apoptotic,field14_colony
+3,sample_4_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,249,5,Necrotic,field14_colony
+6,sample_3_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,47,10,Apoptotic,field11_colony
+7,sample_3_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,142,10,Necrotic,field11_colony
+8,sample_1_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,248,10,Apoptotic,field14_two_colony
+9,sample_1_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,348,10,Necrotic,field14_two_colony
+10,sample_2.csv,ML162,MCF10A,2576,1924,0.642820647,546,5,All,field13_colony
+11,sample_4.csv,ML162,MCF10A,2576,1924,0.642820647,641,5,All,field14_colony
+12,sample_3.csv,ML162,MCF10A,1288,962,1.289942529,200,10,All,field11_colony
+13,sample_1.csv,ML162,MCF10A,1288,962,1.289942529,596,10,All,field14_two_colony

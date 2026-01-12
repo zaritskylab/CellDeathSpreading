@@ -1,4 +1,0 @@
-Experiment_name,SPI,Treatment,Cell Line + Treatment,Cell Line,Origin,Mode,Density,pvalue,sliding_time_window_size,neighbors_dist_threshold
-field13_crop-001_ROI#1_annotation_mixed.csv,0.33140291111799314,MixedColony,MCF10A+field13_crop-001_roi#1_annotation_mixed.csv,MCF10A,field13_colony,mixed,546,0.0,5,100
-Field14-002_ROI#1_annotation_mixed.csv,0.33226527043554727,MixedColony,MCF10A+field14-002_roi#1_annotation_mixed.csv,MCF10A,field14_colony,mixed,641,0.0,5,100
-7-20-23_10arednuclei_ROI#13_or14_both_colonies_annotation_mixed.csv,0.6093637270703814,MixedColony,MCF10A+7-20-23_10arednuclei_roi#13_or14_both_colonies_annotation_mixed.csv,MCF10A,field14_two_colony,mixed,596,0.0,5,100

@@ -1,0 +1,9 @@
+File Name,Origin,neighbors_dist_threshold,Region,SSI,pvalue
+sample_2.csv,field13_colony,100,necrosis,1.4203113708486506,0.0
+sample_2.csv,field13_colony,100,apoptosis,1.740928566765772,0.0
+sample_4.csv,field14_colony,100,apoptosis,1.3074106866802027,0.0
+sample_4.csv,field14_colony,100,necrosis,1.7485063028937315,0.0
+sample_3.csv,field3_colony,100,apoptosis,1.531100045269353,0.0
+sample_3.csv,field3_colony,100,necrosis,1.0625830688355484,0.0
+sample_1.csv,field14_two_colony,100,apoptosis,2.231776704676841,0.0
+sample_1.csv,field14_two_colony,100,necrosis,1.6304861624407918,0.0

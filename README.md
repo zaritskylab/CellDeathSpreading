@@ -1,5 +1,22 @@
 # CellDeathSpreading
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://img.shields.io/badge/DOI-TBD-blue.svg)](https://doi.org/TBD)
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Key Features](#key-features)
+3. [Repository Structure](#repository-structure)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Reproducing Paper Results](#reproducing-paper-results)
+7. [Citation](#citation)
+8. [License](#license)
+9. [Acknowledgments](#acknowledgments)
+10. [Contact](#contact)
+---
+
+## 1. Overview
 A computational framework for **quantifying collective ferroptosis dynamics from live-cell imaging**. Using **single-cell death times**, **morphological death fates** (necrotic vs apoptotic-like), and **cell positions**, the framework computes spatiotemporal statistics that distinguish **single-cell** from **propagative** ferroptosis:
 
 - **Spatial Segregation Index (SSI):** quantifies whether different death fates cluster in space.
@@ -14,7 +31,7 @@ To examine the full paper, please visit [URL]
 
 ---
 
-## Key Features
+## 2. Key Features
 
 - **Cell death quantification** of collective ferroptosis from time-lapse imaging.
 - **Spatial segregation index** evaluating tendency of same death group to cluster.
@@ -25,29 +42,28 @@ To examine the full paper, please visit [URL]
 
 ---
 
-## Repository Structure
+## 3. Repository Structure
 ```
 CellDeathSpreading/
 ├── README.md
-├── environment.yml             # full requirments for installing the relavant enviroment to generate the results in the paper and apply it on other datab
+├── environment.yml             # full requirments for installing the relevant enviroment to generate the results in the paper and apply it on other datab
 ├── main.py
 ├── LICENSE
-├── figures/                    # figures in paper that were the results of this analysis
+├── figures/                    # Publication-quality figures
 ├── notebooks/                  # notebooks
 │   ├── paper_figures/                # generating the paper figure of SPI and SSI analysis
-│   ├── sensitivity_analysis/                  # performing sensitivity analysis of distance threshold and time sliding window 
-│   └── statistical_signifigance/  
-│             # reproming permutation tests + p-values
+│   └── statistical_signifigance/  # performing permutation tests + p-values
+│             
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
-│   ├──  mixed_death_annotations  # csvs of manual annotation of death times and modes
-│   └── metadata.csv                # metadata of expreiments that were manually annotated in mixed_death_annotations  
+│   ├──  death_annotations  # folder of csvs: manual annotation of death times and modes
+│   └── metadata.csv                # metadata of expreiments that were manually annotated in death_annotations  
 │ 
 └── results/                    # csvs summery of running the analysis on data stored in /data    
 ```
 ---
 
-## Setup Instructions
+## 4. Installation
 
 ### Quick Start
 
@@ -61,51 +77,72 @@ conda env create -f environment.yml
 conda activate CellDS
 ```
 
-### Configuration
+## 5. Usage
 
 Experiments are configured via command‑line arguments
 
 
-Run Example 1
+### 5.1 Example 1: SPI Analysis Only
+
 ```
-# Run SPI only, using mixed experiments
+# Run SPI only, over all samples - results will be saved in results in a csv file "SPI_calculations.csv" unless configured differently
 python main.py \
   --run_analysis spi \
-  --data_dir /path/to/data \
-  --results_dir /path/to/results \
-  --files_to_analyze mixed \
-  --sliding_window_size 5 10 \
-  --distance_threshold 50 100 \
-  --n_permutations 1000
+  --data_dir data/death_annotations \ #path to data
+  --results_dir results \ #path to where results intended to be saved
+  --sliding_window_size 10 \ #time resolution to be used
+  --distance_threshold 100 \ # distance threshold of neighboring cells
+  --n_permutations 1000 
 ```
-Run Example 2
+### 5.2 Example 2: SSI Analysis Only
+
 ```
-# Run SSI only over mixed co-culture experiments
+# Running SSI only over all samples - results will be saved in results in a csv file "SSI_calculations.csv" unless configured differently
 python main.py \
   --run_analysis ssi \
-  --data_dir /path/to/data \
-  --results_dir /path/to/results \
-  --files_to_analyze mixed \
+  --data_dir data/death_annotations \
+  --results_dir results \
   --distance_threshold 100
 ```
-Run Example 3
+### 5.3 Example 3: Combined SPI and SSI Analysis
+
 ```
-# Run both SPI and SSI and save to custom CSV names
+# Run both SPI and SSI and save using custom CSV names 
 python main.py \
   --run_analysis all \
-  --spi_csv_file AllExperimentsSPIs_updated.csv \
-  --ssi_csv_file SSI_sensitivity.csv
+  --spi_csv_file SPI_calculations.csv \
+  --ssi_csv_file SSI_calculations.csv
 ```
-## To run main on new data:
-The data should be csvs of time of death, mode of death and the location of cells with columns: death_time, death_mode, cell_x, cell_y.
+### 5.4 Running the SSI and SPI Analysis on New Data
 
-Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse.
-## Regeneration of paper figures:
-To regenerate all main figures in paper, please visit .notebooks/paper_figures.ipynb
+Input data should be CSV files with the following columns:
+      death_time: Time of cell death
+      death_mode: Morphological death fate (e.g., apoptosis vs necrosis)
+      cell_x: X-coordinate of cell position
+      cell_y: Y-coordinate of cell position
+
+
+Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse. metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Density(#Cells), Time Interval (min), Region, Origin. 
 
 ---
 
-## Citation
+## 6. Reproducing Paper Results
+To regenerate all figures from the paper:
+
+1. **Run the complete analysis:**
+   ```bash
+   python main.py --run_analysis all
+   ```
+Results will be saved in `results/` as `SPI_calculations.csv` and `SSI_calculations.csv`.
+
+2. **Generate figures:**
+   Open and execute `notebooks/paper_figures.ipynb` sequentially.
+
+---
+
+---
+
+## 7. Citation
 
 If you use this code in academic work, please cite the associated paper.
 
@@ -125,17 +162,22 @@ If you use this code in academic work, please cite the associated paper.
 
 ---
 
-## License
+## 8. License
 
 This repository (including data, documentation, and figures where applicable) is intended for academic/research use and is released under **CC BY-NC 4.0**. See [LICENSE](LICENSE) for details.
 
 ---
 
-## Resources
-This repo was carried out with the major help of this repo: [https://github.com/Yishaiaz/CellDeathQuantification]
 
+## 9. Acknowledgments
+
+This repository builds upon the [CellDeathQuantification framework](https://github.com/Yishaiaz/CellDeathQuantification).
 ---
 
-## Contact
+## 10. Contact
 
-Please contact esraan@post.bgu.ac.il or assafzar@gmail.com for comments or questions regarding this repo.
+For questions, issues, or collaboration inquiries:
+- **Esraa Nsasra**: esraan@post.bgu.ac.il/esraansas@gmail.com
+- **Assaf Zaritsky**: assafzar@gmail.com
+
+Please open an [issue](https://github.com/zaritskylab/CellDeathSpreading/issues) for bug reports or feature requests.

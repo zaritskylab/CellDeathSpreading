@@ -346,9 +346,9 @@ def simple_treatment(name):
     # if "field" in name.lower():
     #     return "FB"
     if "nec" in name.lower():
-        return "Necrosis"
+        return "NecroticRegions"
     elif "apop" in name.lower():
-        return "Apoptosis"
+        return "ApoptoticRegions"
     else:
         if "_A" in name:
             return "MixedSubApop"
