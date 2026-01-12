@@ -4,16 +4,16 @@
 [![DOI](https://img.shields.io/badge/DOI-TBD-blue.svg)](https://doi.org/TBD)
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Key Features](#key-features)
-3. [Repository Structure](#repository-structure)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Reproducing Paper Results](#reproducing-paper-results)
-7. [Citation](#citation)
-8. [License](#license)
-9. [Acknowledgments](#acknowledgments)
-10. [Contact](#contact)
+1. [Overview](#1-overview)
+2. [Key Features](#2-key-features)
+3. [Repository Structure](#3-repository-structure)
+4. [Installation](#4-installation)
+5. [Usage](#5-usage)
+6. [Reproducing Paper Results](#6-reproducing-paper-results)
+7. [Citation](#7-citation)
+8. [License](#8-license)
+9. [Acknowledgments](#9-acknowledgments)
+10. [Contact](#10-contact)
 ---
 
 ## 1. Overview
@@ -56,7 +56,7 @@ CellDeathSpreading/
 │             
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
-│   ├──  death_annotations  # folder of csvs: manual annotation of death times and modes
+│   ├── death_annotations  # folder of csvs: manual annotation of death times and modes
 │   └── metadata.csv                # metadata of expreiments that were manually annotated in death_annotations  
 │ 
 └── results/                    # csvs summery of running the analysis on data stored in /data    
