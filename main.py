@@ -35,7 +35,7 @@ def get_argparser():
     p.add_argument("--sliding_window_size",
            type=int, 
            nargs="+",
-           default=[5, 10], 
+           default=[10], 
            help="Size of the sliding window.")
     p.add_argument("--distance_threshold",
            type=int, 
@@ -92,8 +92,6 @@ if __name__ == "__main__":
             raise ValueError("No metadata found for the specified files containing 'regions'.")
         for neighbors_dist_threshold in distance_threshold:
             for sliding_time_window_size in sliding_window_size:
-                p_nucs_by_exp_name = {}
-                global_density_by_exp_name = {}
                 all_experiments_spi_regeneration = calc_all_experiments_SPI_for_figure(
                     exp_name=list(metadata_spi["File Name"]),
                     exps_dir_path=death_annotations_dir,
@@ -106,11 +104,9 @@ if __name__ == "__main__":
                 reformatting_all_previos_experiments_spi_and_ni_regeneration = {"Experiment_name": [],
                                                                                 "SPI": [],
                                                                                 "Treatment": [],
-                                                                                "Cell Line + Treatment": [],
                                                                                 "Cell Line": [],
                                                                                 "Origin": [],
                                                                                 "Region": [],
-                                                                                "Density": [],
                                                                                 "pvalue": [],
                                                                                 "sliding_time_window_size": [],
                                                                                 "neighbors_dist_threshold": []}
@@ -126,10 +122,7 @@ if __name__ == "__main__":
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["SPI"].append(value[0])
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["pvalue"].append(value[1])
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["Cell Line"].append(exp_cell_line)
-                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Cell Line + Treatment"].append(replace_ugly_long_name(key, exp_cell_line))
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["Treatment"].append(simple_treatment(key))
-                    density = metadata_spi[metadata_spi["File Name"] == key]["Density(#Cells)"].values[0]
-                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Density"].append(density)
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["sliding_time_window_size"].append(sliding_time_window_size)
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["neighbors_dist_threshold"].append(neighbors_dist_threshold)
                 

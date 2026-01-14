@@ -122,7 +122,7 @@ Input data should be CSV files with the following columns:
       cell_y: Y-coordinate of cell position
 
 
-Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse. metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Density(#Cells), Time Interval (min), Region, Origin. 
+Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse. metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Time Interval (min), Region, Origin. 
 
 ---
 
