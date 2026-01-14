@@ -49,7 +49,7 @@ class uSpiCalc(SpiCalc):
             self.scramble_signficance_95 = time_death_means[int(self.n_scramble * 5 / 100)]
             self.scramble_signficance_98 = time_death_means[int(self.n_scramble * 2 / 100)]
             self.scramble_mean_time_death = sum(time_death_means) / len(time_death_means)
-        return better_mean / self.n_scramble , time_death_means
+        return np.float32(better_mean / self.n_scramble), time_death_means
 
     def calc_stat(self, dist_for_calc):
         return np.mean(dist_for_calc)

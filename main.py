@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
                 final_dataframe = pd.concat([final_dataframe, reformatting_all_previos_experiments_spi_and_ni_regeneration_df], ignore_index=True)
         if args.save_csv:
-            final_dataframe.to_csv(results_dir + args.spi_csv_file, index=False)
+            final_dataframe.to_csv(results_dir + args.spi_csv_file, index=False, float_format='%.4f')
     
     if args.run_analysis in ["ssi", "all"]:
 
@@ -190,5 +190,4 @@ if __name__ == "__main__":
         ssi_df = pd.DataFrame(rows)
         if args.save_csv:
             out_path = results_dir + args.ssi_csv_file
-            ssi_df.to_csv(out_path, index=False)
-    
+            ssi_df.to_csv(out_path, index=False, float_format='%.4f')
