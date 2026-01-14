@@ -1,13 +1,13 @@
-﻿,File Name,Treatment,Cell Line,SizeX,SizeY,PhysicalResolution (um/px),Density(#Cells),Time Interval (min),Region,Origin
-0,sample_2_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,237,5,Apoptotic,field13_colony
-1,sample_2_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,309,5,Necrotic,field13_colony
-2,sample_4_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,387,5,Apoptotic,field14_colony
-3,sample_4_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,249,5,Necrotic,field14_colony
-6,sample_3_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,47,10,Apoptotic,field11_colony
-7,sample_3_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,142,10,Necrotic,field11_colony
-8,sample_1_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,248,10,Apoptotic,field14_two_colony
-9,sample_1_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,348,10,Necrotic,field14_two_colony
-10,sample_2.csv,ML162,MCF10A,2576,1924,0.642820647,546,5,All,field13_colony
-11,sample_4.csv,ML162,MCF10A,2576,1924,0.642820647,641,5,All,field14_colony
-12,sample_3.csv,ML162,MCF10A,1288,962,1.289942529,200,10,All,field11_colony
-13,sample_1.csv,ML162,MCF10A,1288,962,1.289942529,596,10,All,field14_two_colony
+﻿,File Name,Treatment,Cell Line,SizeX,SizeY,PhysicalResolution (um/px),Time Interval (min),Region,Origin
+0,sample_2_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Apoptotic,field13_colony
+1,sample_2_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Necrotic,field13_colony
+2,sample_4_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Apoptotic,field14_colony
+3,sample_4_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Necrotic,field14_colony
+6,sample_3_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Apoptotic,field11_colony
+7,sample_3_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Necrotic,field11_colony
+8,sample_1_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Apoptotic,field14_two_colony
+9,sample_1_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Necrotic,field14_two_colony
+10,sample_2.csv,ML162,MCF10A,2576,1924,0.642820647,5,All,field13_colony
+11,sample_4.csv,ML162,MCF10A,2576,1924,0.642820647,5,All,field14_colony
+12,sample_3.csv,ML162,MCF10A,1288,962,1.289942529,10,All,field11_colony
+13,sample_1.csv,ML162,MCF10A,1288,962,1.289942529,10,All,field14_two_colony
