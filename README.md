@@ -1,6 +1,8 @@
 # Ferroptosis induces heterogeneous death profiles that are controlled by lysosome rupture
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
-Jyotirekha Das1*, Saloni K. Hombalkar1,2*, Alison D. Klein1,2, Esraa Nsasra3, Muskaan Vasandani1,4, Kay Petruzzi1, Dajun Lu1, Stephen Ruiz2,5, Orit Kliper-Gross3, Jiachen Hu1,4, Michelle Riegman1,4, Xuejun Jiang1, Daniel A. Heller5, Assaf Zaritsky3, Michelle S. Bradbury6, and Michael Overholtzer1,2,4
+Jyotirekha Das<sup>1*</sup>, Saloni K. Hombalkar<sup>1,2*</sup>, Alison D. Klein<sup>1,2</sup>, Esraa Nsasra<sup>3</sup>, Muskaan Vasandani<sup>1,4</sup>, Kay Petruzzi<sup>1</sup>, Dajun Lu<sup>1</sup>, Stephen Ruiz<sup>2,5</sup>, Orit Kliper-Gross<sup>3</sup>, Jiachen Hu<sup>1,4</sup>, Michelle Riegman<sup>1,4</sup>, Xuejun Jiang<sup>1</sup>, Daniel A. Heller<sup>5</sup>, Assaf Zaritsky<sup>3</sup>, Michelle S. Bradbury<sup>6</sup>, and Michael Overholtzer<sup>1,2,4</sup>
   * Equal contribution
 1. Cell Biology Program, Memorial Sloan Kettering Cancer Center, New York, NY 10065
 2. BCMB Graduate Program, Weill Cornell Medical College, New York, NY 10065
@@ -9,9 +11,7 @@ Jyotirekha Das1*, Saloni K. Hombalkar1,2*, Alison D. Klein1,2, Esraa Nsasra3, Mu
 5. Molecular Pharmacology Program, Memorial Sloan Kettering Cancer Center, New York, New York 10065
 6. Molecular Imaging Innovations Institute, Department of Radiology, Weill Cornell Medical College, New York, NY 10065
 
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://img.shields.io/badge/DOI-TBD-blue.svg)](https://doi.org/TBD)
+
 
 ## Table of Contents
 1. [Overview](#1-overview)
@@ -169,7 +169,6 @@ If you use this code in academic work, please cite the associated paper.
   journal = {Developmental Cell},
   year    = {2025},
   note    = {In press},
-  doi     = {TBD}
 }
 
 ```
@@ -184,6 +183,7 @@ This repository (including data, documentation, and figures where applicable) is
 
 
 ## 9. Acknowledgments
+
 
 This repository builds upon the [CellDeathQuantification](https://github.com/Yishaiaz/CellDeathQuantification).
 ---
