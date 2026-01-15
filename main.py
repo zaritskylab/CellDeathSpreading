@@ -56,10 +56,10 @@ def get_argparser():
            type=str,
            default="death_annotations/",
            help="Directory for death annotations.")
-    p.add_argument("--metadata_file",
+    p.add_argument("--fig2gh_metadata_file",
            type=str,
-           default="metadata.csv",
-           help="Metadata file name of the relevant csvs.")
+           default="fig2gh_metadata.csv",
+           help="fig2gh_metadata file name of the relevant csvs.")
     p.add_argument("--save_csv", type=bool, default=True, help="Whether to save the results as a CSV file.")
     p.add_argument("--run_analysis", type=str, default="all", help="Which analysis to run: 'ssi', 'spi', or 'all'.")
 
@@ -75,27 +75,27 @@ if __name__ == "__main__":
     random_seed = args.random_seed
     results_dir = args.results_dir
     death_annotations_dir = os.path.join(data_dir,args.death_annotations_dir)
-    metadata_file = args.metadata_file
+    fig2gh_metadata_file = args.fig2gh_metadata_file
     np.random.seed(random_seed) 
     # Create results directory if it doesn't exist
     final_dataframe = pd.DataFrame()
     os.makedirs(results_dir, exist_ok=True)
-    metadata = pd.read_csv(os.path.join(data_dir, metadata_file))
-    # Filter metadata based on files to analyze
+    fig2gh_metadata = pd.read_csv(os.path.join(data_dir, fig2gh_metadata_file))
+    # Filter fig2gh_metadata based on files to analyze
     files_to_analyze = args.files_to_analyze
-    metadata = metadata[metadata["File Name"].str.contains('|'.join(files_to_analyze), case=False, na=False)]
-    if metadata.empty:
-        raise ValueError("No metadata found for the specified files to analyze.")
+    fig2gh_metadata = fig2gh_metadata[fig2gh_metadata["File Name"].str.contains('|'.join(files_to_analyze), case=False, na=False)]
+    if fig2gh_metadata.empty:
+        raise ValueError("No fig2gh_metadata found for the specified files to analyze.")
     if args.run_analysis in ["spi", "all"]:
-        metadata_spi = metadata[metadata["File Name"].str.contains("region", case=False)] 
-        if metadata_spi.empty:
-            raise ValueError("No metadata found for the specified files containing 'regions'.")
+        fig2gh_metadata_spi = fig2gh_metadata[fig2gh_metadata["File Name"].str.contains("region", case=False)] 
+        if fig2gh_metadata_spi.empty:
+            raise ValueError("No fig2gh_metadata found for the specified files containing 'regions'.")
         for neighbors_dist_threshold in distance_threshold:
             for sliding_time_window_size in sliding_window_size:
                 all_experiments_spi_regeneration = calc_all_experiments_SPI_for_figure(
-                    exp_name=list(metadata_spi["File Name"]),
+                    exp_name=list(fig2gh_metadata_spi["File Name"]),
                     exps_dir_path=death_annotations_dir,
-                    meta_data_full_file_path=os.path.join(data_dir, metadata_file),
+                    meta_data_full_file_path=os.path.join(data_dir, fig2gh_metadata_file),
                     dist_threshold=neighbors_dist_threshold,
                     time_unit="minutes",
                     sliding_time_window_size=sliding_time_window_size,
@@ -105,7 +105,6 @@ if __name__ == "__main__":
                                                                                 "SPI": [],
                                                                                 "Treatment": [],
                                                                                 "Cell Line": [],
-                                                                                "Origin": [],
                                                                                 "Region": [],
                                                                                 "pvalue": [],
                                                                                 "sliding_time_window_size": [],
@@ -113,16 +112,14 @@ if __name__ == "__main__":
                 for key, value in all_experiments_spi_regeneration.items():
                     if value is None:
                         continue
-                    origin = metadata_spi[metadata_spi["File Name"] == key]["Origin"].values[0]
-                    mode = metadata_spi[metadata_spi["File Name"] == key]["Region"].values[0]
-                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Origin"].append(origin)
-                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Region"].append(mode)
+                    
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["Experiment_name"].append(key)
-                    exp_cell_line = metadata_spi[metadata_spi["File Name"] == key]["Cell Line"].values[0]
+                    exp_cell_line = fig2gh_metadata_spi[fig2gh_metadata_spi["File Name"] == key]["Cell Line"].values[0]
+                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Region"].append(simple_treatment(key))
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["SPI"].append(value[0])
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["pvalue"].append(value[1])
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["Cell Line"].append(exp_cell_line)
-                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Treatment"].append(simple_treatment(key))
+                    reformatting_all_previos_experiments_spi_and_ni_regeneration["Treatment"].append(fig2gh_metadata_spi[fig2gh_metadata_spi["File Name"] == key]["Treatment"].values[0])
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["sliding_time_window_size"].append(sliding_time_window_size)
                     reformatting_all_previos_experiments_spi_and_ni_regeneration["neighbors_dist_threshold"].append(neighbors_dist_threshold)
                 
@@ -137,7 +134,7 @@ if __name__ == "__main__":
         for dist in distance_threshold:
             results_by_distance = {}
             res = {}
-            for file in list(metadata["File Name"]):
+            for file in list(fig2gh_metadata["File Name"]):
                 if not re.search(r"sample_\d+\.csv", file):
                         continue
                 exp_full_path = os.path.join(death_annotations_dir, file)
@@ -179,7 +176,7 @@ if __name__ == "__main__":
                     rows.append(
                         {
                             "File Name": short_name, 
-                            "Origin":metadata[metadata["File Name"]==short_name]["Origin"].values[0],
+                            # "Origin":fig2gh_metadata[fig2gh_metadata["File Name"]==short_name]["Origin"].values[0],
                             "neighbors_dist_threshold": dist,
                             "Region": mode,
                             "SSI": ssi,

@@ -1,0 +1,13 @@
+﻿,File Name,Treatment,Cell Line,SizeX,SizeY,PhysicalResolution (um/px),Time Interval (min),Region
+0,sample_2_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Apoptotic
+1,sample_2_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Necrotic
+2,sample_4_apoptotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Apoptotic
+3,sample_4_necrotic_region.csv,ML162,MCF10A,2576,1924,0.642820647,5,Necrotic
+6,sample_3_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Apoptotic
+7,sample_3_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Necrotic
+8,sample_1_apoptotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Apoptotic
+9,sample_1_necrotic_region.csv,ML162,MCF10A,1288,962,1.289942529,10,Necrotic
+10,sample_2.csv,ML162,MCF10A,2576,1924,0.642820647,5,All
+11,sample_4.csv,ML162,MCF10A,2576,1924,0.642820647,5,All
+12,sample_3.csv,ML162,MCF10A,1288,962,1.289942529,10,All
+13,sample_1.csv,ML162,MCF10A,1288,962,1.289942529,10,All

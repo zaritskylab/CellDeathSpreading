@@ -57,7 +57,7 @@ CellDeathSpreading/
 ├── src/                        # main scripts of SSI and SPI quantifications
 ├── data/   
 │   ├── death_annotations  # folder of csvs: manual annotation of death times and modes
-│   └── metadata.csv                # metadata of manually annotated csvs in death_annotations/  
+│   └── fig2gh_metadata.csv                # fig2gh_metadata of manually annotated csvs in death_annotations/  
 │ 
 └── results/                    # SSI and SPI analysis results will stored in here    
 ```
@@ -122,7 +122,7 @@ Input data should be CSV files with the following columns:
       cell_y: Y-coordinate of cell position
 
 
-Metadata csv should be provided with the same template in .data/ dir based on metadata extracted from the raw time-lapse. metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Time Interval (min), Region, Origin. 
+fig2gh_metadata csv should be provided with the same template in .data/ dir based on fig2gh_metadata extracted from the raw time-lapse. fig2gh_metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Time Interval (min), Region, Origin. 
 
 ---
 

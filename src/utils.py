@@ -64,7 +64,7 @@ def get_all_unique_treatments(meta_data_file_full_path: str = None):
     if meta_data_file_full_path is None:
         meta_data_file_full_path = os.sep.join(os.getcwd().split(os.sep)[:-1] + ['Data',
                                                                                  'Experiments_XYT_CSV',
-                                                                                 'ExperimentsMetaData.csv'])
+                                                                                 'Experimentsfig2gh_metadata.csv'])
     meta_data_df = pd.read_csv(meta_data_file_full_path)
     all_treatments = meta_data_df['Treatment'].values
     unique_treatments = np.unique(all_treatments)
@@ -221,11 +221,11 @@ def get_exp_treatment_type_and_temporal_resolution(exp_file_name: str,
         if compressed_flag:
             meta_data_file_full_path = os.sep.join(os.getcwd().split(os.sep)[:-1] + ['Data',
                                                                                      'Experiments_XYT_CSV',
-                                                                                     'Compressed_ExperimentsMetaData.csv'])
+                                                                                     'Compressed_Experimentsfig2gh_metadata.csv'])
         else:
             meta_data_file_full_path = os.sep.join(os.getcwd().split(os.sep)[:-1] + ['Data',
                                                                                      'Experiments_XYT_CSV',
-                                                                                     'ExperimentsMetaData.csv'])
+                                                                                     'Experimentsfig2gh_metadata.csv'])
 
     meta_data_file = pd.read_csv(meta_data_file_full_path)
     exp_meta_data = meta_data_file[meta_data_file['File Name'] == exp_file_name]

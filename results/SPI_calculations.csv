@@ -1,9 +1,9 @@
-Experiment_name,SPI,Treatment,Cell Line,Origin,Region,pvalue,sliding_time_window_size,neighbors_dist_threshold
-sample_2_apoptotic_region.csv,0.0565,ApoptoticRegions,MCF10A,field13_colony,Apoptotic,0.0000,10,100
-sample_2_necrotic_region.csv,0.2639,NecroticRegions,MCF10A,field13_colony,Necrotic,0.0000,10,100
-sample_4_apoptotic_region.csv,0.1622,ApoptoticRegions,MCF10A,field14_colony,Apoptotic,0.0000,10,100
-sample_4_necrotic_region.csv,0.2037,NecroticRegions,MCF10A,field14_colony,Necrotic,0.0000,10,100
-sample_3_apoptotic_region.csv,0.0253,ApoptoticRegions,MCF10A,field11_colony,Apoptotic,0.0330,10,100
-sample_3_necrotic_region.csv,0.3245,NecroticRegions,MCF10A,field11_colony,Necrotic,0.0000,10,100
-sample_1_apoptotic_region.csv,0.2476,ApoptoticRegions,MCF10A,field14_two_colony,Apoptotic,0.0000,10,100
-sample_1_necrotic_region.csv,0.5470,NecroticRegions,MCF10A,field14_two_colony,Necrotic,0.0000,10,100
+Experiment_name,SPI,Treatment,Cell Line,Region,pvalue,sliding_time_window_size,neighbors_dist_threshold
+sample_2_apoptotic_region.csv,0.0565,ML162,MCF10A,ApoptoticRegions,0.0000,10,100
+sample_2_necrotic_region.csv,0.2639,ML162,MCF10A,NecroticRegions,0.0000,10,100
+sample_4_apoptotic_region.csv,0.1622,ML162,MCF10A,ApoptoticRegions,0.0000,10,100
+sample_4_necrotic_region.csv,0.2037,ML162,MCF10A,NecroticRegions,0.0000,10,100
+sample_3_apoptotic_region.csv,0.0253,ML162,MCF10A,ApoptoticRegions,0.0330,10,100
+sample_3_necrotic_region.csv,0.3245,ML162,MCF10A,NecroticRegions,0.0000,10,100
+sample_1_apoptotic_region.csv,0.2476,ML162,MCF10A,ApoptoticRegions,0.0000,10,100
+sample_1_necrotic_region.csv,0.5470,ML162,MCF10A,NecroticRegions,0.0000,10,100
