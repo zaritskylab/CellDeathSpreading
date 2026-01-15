@@ -116,9 +116,13 @@ python main.py \
 ### 5.4 Running the SSI and SPI Analysis on New Data
 
 Input data should be CSV files with the following columns:
+
       death_time: Time of cell death
+
       death_mode: Morphological death fate (e.g., apoptosis vs necrosis)
+
       cell_x: X-coordinate of cell position
+      
       cell_y: Y-coordinate of cell position
 
 
