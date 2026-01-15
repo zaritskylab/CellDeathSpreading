@@ -3,6 +3,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 Jyotirekha Das<sup>1*</sup>, Saloni K. Hombalkar<sup>1,2*</sup>, Alison D. Klein<sup>1,2</sup>, Esraa Nsasra<sup>3</sup>, Muskaan Vasandani<sup>1,4</sup>, Kay Petruzzi<sup>1</sup>, Dajun Lu<sup>1</sup>, Stephen Ruiz<sup>2,5</sup>, Orit Kliper-Gross<sup>3</sup>, Jiachen Hu<sup>1,4</sup>, Michelle Riegman<sup>1,4</sup>, Xuejun Jiang<sup>1</sup>, Daniel A. Heller<sup>5</sup>, Assaf Zaritsky<sup>3</sup>, Michelle S. Bradbury<sup>6</sup>, and Michael Overholtzer<sup>1,2,4</sup>
+  
   *Equal contribution
 1. Cell Biology Program, Memorial Sloan Kettering Cancer Center, New York, NY 10065
 2. BCMB Graduate Program, Weill Cornell Medical College, New York, NY 10065
