@@ -182,7 +182,7 @@ This repository (including data, documentation, and figures where applicable) is
 ## 9. Acknowledgments
 
 
-##### This repository builds upon the [CellDeathQuantification](https://github.com/Yishaiaz/CellDeathQuantification).
+##### This repository builds upon [CellDeathQuantification](https://github.com/Yishaiaz/CellDeathQuantification).
 ---
 
 ## 10. Contact
