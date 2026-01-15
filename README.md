@@ -1,4 +1,4 @@
-# CellDeathSpreading
+# Ferroptosis induces heterogeneous death profiles that are controlled by lysosome rupture
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![DOI](https://img.shields.io/badge/DOI-TBD-blue.svg)](https://doi.org/TBD)
@@ -19,8 +19,8 @@
 ## 1. Overview
 A computational framework for **quantifying collective ferroptosis dynamics from live-cell imaging**. Using **single-cell death times**, **morphological death fates** (necrotic vs apoptotic-like), and **cell positions**, the framework computes spatiotemporal statistics that distinguish **single-cell** from **propagative** ferroptosis:
 
-- **Spatial Segregation Index (SSI):** quantifies whether different death fates cluster in space.
 - **Spatial Propagation Index (SPI):** quantifies whether neighboring cells of the same fate die **more synchronously** than expected by chance.
+- **Spatial Segregation Index (SSI):** quantifies whether different death fates cluster in space.
 
 These metrics enable systematic comparison across perturbations (e.g., **GPX4 inhibition** vs **glutathione depletion**) and help reveal mechanisms underlying **locally propagative, lysosome-linked death waves** in cell populations.
 
@@ -46,20 +46,20 @@ To examine the full paper, please visit [URL]
 ```
 CellDeathSpreading/
 ├── README.md
-├── environment.yml             # full requirments for installing the relevant enviroment 
+├── environment.yml                   # full requirments for installing the relevant enviroment 
 ├── main.py
 ├── LICENSE
-├── figures/                    # Publication-quality figures
-├── notebooks/                  # notebooks
+├── figures/                          # Publication-quality figures
+├── notebooks/                        # notebooks
 │   ├── paper_figures/                # generating the paper figure of SPI and SSI analysis
-│   └── statistical_signifigance/  # performing permutation tests + p-values
+│   └── statistical_signifigance/     # performing permutation tests + p-values
 │             
-├── src/                        # main scripts of SSI and SPI quantifications
+├── src/                              # main scripts of SSI and SPI quantifications
 ├── data/   
-│   ├── death_annotations  # folder of csvs: manual annotation of death times and modes
-│   └── fig2gh_metadata.csv                # fig2gh_metadata of manually annotated csvs in death_annotations/  
+│   ├── death_annotations             # folder of csvs: manual annotation of death times and modes
+│   └── fig2gh_metadata.csv           # fig2gh_metadata of manually annotated csvs in death_annotations/  
 │ 
-└── results/                    # SSI and SPI analysis results will stored in here    
+└── results/                          # SSI and SPI analysis results will stored in here    
 ```
 ---
 
@@ -88,10 +88,10 @@ Experiments are configured via command‑line arguments
 # Run SPI only, over all samples - results will be saved in results in a csv file "SPI_calculations.csv" unless configured differently
 python main.py \
   --run_analysis spi \
-  --data_dir data/death_annotations \ #path to data
-  --results_dir results \ #path to where results intended to be saved
-  --sliding_window_size 10 \ #time resolution to be used
-  --distance_threshold 100 \ # distance threshold of neighboring cells
+  --data_dir data/death_annotations \   #path to data
+  --results_dir results \               #path to where results intended to be saved
+  --sliding_window_size 10 \            #time resolution to be used
+  --distance_threshold 100 \            # distance threshold of neighboring cells
   --n_permutations 1000 
 ```
 ### 5.2 Example 2: SSI Analysis Only
@@ -126,7 +126,7 @@ Input data should be CSV files with the following columns:
       cell_y: Y-coordinate of cell position
 
 
-fig2gh_metadata csv should be provided with the same template in .data/ dir based on fig2gh_metadata extracted from the raw time-lapse. fig2gh_metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Time Interval (min), Region, Origin. 
+fig2gh_metadata csv should be provided with the same template in data/ dir based on fig2gh_metadata extracted from the raw time-lapse. fig2gh_metadata must contain the following columns: File Name, Treatment, Cell Line, SizeX, SizeY, PhysicalResolution (um/px), Time Interval (min), Region. 
 
 ---
 
@@ -137,7 +137,7 @@ To regenerate all figures from the paper:
    ```bash
    python main.py --run_analysis all
    ```
-Results will be saved in `results/` as `SPI_calculations.csv` and `SSI_calculations.csv`.
+This will run the analysis by paper parameters. Results will be saved in `results/` as `SPI_calculations.csv` and `SSI_calculations.csv`.
 
 2. **Generate figures:**
    Open and execute `notebooks/paper_figures.ipynb` sequentially.
@@ -175,7 +175,7 @@ This repository (including data, documentation, and figures where applicable) is
 
 ## 9. Acknowledgments
 
-This repository builds upon the [CellDeathQuantification framework](https://github.com/Yishaiaz/CellDeathQuantification).
+This repository builds upon the [CellDeathQuantification](https://github.com/Yishaiaz/CellDeathQuantification).
 ---
 
 ## 10. Contact
