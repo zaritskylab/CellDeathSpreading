@@ -1,6 +1,7 @@
 # Ferroptosis induces heterogeneous death profiles that are controlled by lysosome rupture
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://img.shields.io/badge/DOI-10.1234%2Fexample-blue)](https://doi.org/10.5281/zenodo.18271042)
 
 Jyotirekha Das<sup>1*</sup>, Saloni K. Hombalkar<sup>1,2*</sup>, Alison D. Klein<sup>1,2</sup>, Esraa Nsasra<sup>3</sup>, Muskaan Vasandani<sup>1,4</sup>, Kay Petruzzi<sup>1</sup>, Dajun Lu<sup>1</sup>, Stephen Ruiz<sup>2,5</sup>, Orit Kliper-Gross<sup>3</sup>, Jiachen Hu<sup>1,4</sup>, Michelle Riegman<sup>1,4</sup>, Xuejun Jiang<sup>1</sup>, Daniel A. Heller<sup>5</sup>, Assaf Zaritsky<sup>3</sup>, Michelle S. Bradbury<sup>6</sup>, and Michael Overholtzer<sup>1,2,4</sup>
   
